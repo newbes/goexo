@@ -1,7 +1,7 @@
 package aws_test
 
 import (
-	"github.com/AdRoll/goamz/aws"
+	"github.com/newbes/goexo/aws"
 	"gopkg.in/check.v1"
 	"time"
 )

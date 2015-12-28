@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"crypto/md5"
 	"fmt"
-	"github.com/AdRoll/goamz/aws"
-	"github.com/AdRoll/goamz/s3"
-	"github.com/AdRoll/goamz/testutil"
+	"github.com/newbes/goexo/aws"
+	"github.com/newbes/goexo/s3"
+	"github.com/newbes/goexo/testutil"
 	"gopkg.in/check.v1"
 	"io/ioutil"
 	"net"
@@ -97,7 +97,7 @@ func testBucket(s *s3.S3) *s3.Bucket {
 	if len(key) >= 8 {
 		key = s.Auth.AccessKey[:8]
 	}
-	return s.Bucket(fmt.Sprintf("goamz-%s-%s", s.Region.Name, key))
+	return s.Bucket(fmt.Sprintf("goexo-%s-%s", s.Region.Name, key))
 }
 
 var attempts = aws.AttemptStrategy{
@@ -232,7 +232,7 @@ func (s *ClientTests) TestBasicFunctionality(c *check.C) {
 }
 
 func (s *ClientTests) TestGetNotFound(c *check.C) {
-	b := s.s3.Bucket("goamz-" + s.s3.Auth.AccessKey)
+	b := s.s3.Bucket("goexo-" + s.s3.Auth.AccessKey)
 	data, err := b.Get("non-existent")
 
 	s3err, _ := err.(*s3.Error)
@@ -249,7 +249,7 @@ func (s *ClientTests) TestRegions(c *check.C) {
 	for _, region := range aws.Regions {
 		go func(r aws.Region) {
 			s := s3.New(s.s3.Auth, r)
-			b := s.Bucket("goamz-" + s.Auth.AccessKey)
+			b := s.Bucket("goexo-" + s.Auth.AccessKey)
 			_, err := b.Get("non-existent")
 			errs <- err
 		}(region)

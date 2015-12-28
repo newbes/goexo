@@ -1,5 +1,5 @@
 //
-// goamz - Go packages to interact with the Amazon Web Services.
+// goexo - Go packages to interact with the Amazon Web Services.
 //
 //   https://wiki.ubuntu.com/goamz
 //
@@ -30,7 +30,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/AdRoll/goamz/aws"
+	"github.com/newbes/goexo/aws"
 )
 
 const debug = false
@@ -1200,7 +1200,7 @@ func (s3 *S3) doHttpRequest(hreq *http.Request, resp interface{}) (*http.Respons
 		hresp.Body.Close()
 
 		if debug {
-			log.Printf("goamz.s3> decoded xml into %#v", resp)
+			log.Printf("goexo.s3> decoded xml into %#v", resp)
 		}
 
 	}

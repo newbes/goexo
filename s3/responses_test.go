@@ -138,7 +138,7 @@ var ListPartsResultDump2 = `
 var ListMultiResultDump = `
 <?xml version="1.0"?>
 <ListMultipartUploadsResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-  <Bucket>goamz-test-bucket-us-east-1-akiajk3wyewhctyqbf7a</Bucket>
+  <Bucket>goexo-test-bucket-us-east-1-akiajk3wyewhctyqbf7a</Bucket>
   <KeyMarker/>
   <UploadIdMarker/>
   <NextKeyMarker>multi1</NextKeyMarker>

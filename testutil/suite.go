@@ -2,7 +2,7 @@ package testutil
 
 import (
 	"flag"
-	"github.com/AdRoll/goamz/aws"
+	"github.com/newbes/goexo/aws"
 	"gopkg.in/check.v1"
 )
 

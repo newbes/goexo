@@ -1,5 +1,6 @@
+// Package aws provide
 //
-// goamz - Go packages to interact with the Amazon Web Services.
+// goexo - Go packages to interact with the Amazon Web Services.
 //
 //   https://wiki.ubuntu.com/goamz
 //
@@ -51,40 +52,13 @@ type ServiceInfo struct {
 // See http://goo.gl/d8BP1 for more details.
 type Region struct {
 	Name                   string // the canonical name of this region.
-	EC2Endpoint            ServiceInfo
 	S3Endpoint             string
 	S3BucketEndpoint       string // Not needed by AWS S3. Use ${bucket} for bucket name.
 	S3LocationConstraint   bool   // true if this region requires a LocationConstraint declaration.
 	S3LowercaseBucket      bool   // true if the region requires bucket names to be lower case.
-	SDBEndpoint            string
-	SNSEndpoint            string
-	SQSEndpoint            string
-	SESEndpoint            string
-	IAMEndpoint            string
-	ELBEndpoint            string
-	KMSEndpoint            string
-	DynamoDBEndpoint       string
-	CloudWatchServicepoint ServiceInfo
-	AutoScalingEndpoint    string
-	RDSEndpoint            ServiceInfo
-	KinesisEndpoint        string
-	STSEndpoint            string
-	CloudFormationEndpoint string
-	ElastiCacheEndpoint    string
 }
 
 var Regions = map[string]Region{
-	APNortheast.Name:  APNortheast,
-	APSoutheast.Name:  APSoutheast,
-	APSoutheast2.Name: APSoutheast2,
-	EUCentral.Name:    EUCentral,
-	EUWest.Name:       EUWest,
-	USEast.Name:       USEast,
-	USWest.Name:       USWest,
-	USWest2.Name:      USWest2,
-	USGovWest.Name:    USGovWest,
-	SAEast.Name:       SAEast,
-	CNNorth1.Name:     CNNorth1,
 	Exoscale.Name:     Exoscale,
 }
 
@@ -432,7 +406,7 @@ func CredentialFileAuth(filePath string, profile string, expiration time.Duratio
 		return
 	}
 
-	keyId, ok := profileData["aws_access_key_id"]
+	keyID, ok := profileData["aws_access_key_id"]
 	if !ok {
 		err = errors.New("The credentials file did not contain required attribute aws_access_key_id")
 		return
@@ -444,7 +418,7 @@ func CredentialFileAuth(filePath string, profile string, expiration time.Duratio
 		return
 	}
 
-	auth.AccessKey = keyId
+	auth.AccessKey = keyID
 	auth.SecretKey = secretKey
 
 	if token, ok := profileData["aws_session_token"]; ok {
@@ -514,7 +488,7 @@ func Encode(s string) string {
 			ei += 3
 		} else {
 			e[ei] = c
-			ei += 1
+			ei++ 
 		}
 	}
 	return string(e[:ei])
@@ -566,9 +540,9 @@ func InstanceId() string {
 		body, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
 			return "unknown"
-		} else {
-			return string(body)
-		}
+		} 
+		return string(body)
+		
 	}
 }
 
